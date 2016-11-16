@@ -1,0 +1,35 @@
+<h1>Patients</h1>
+<hr>
+
+<% if @patients.any? %>
+	<div class="container">
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Date of Birth</th>
+		      <th colspan="2"></th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @patients.each do |patient| %>
+		      <tr>
+		        <td><%= link_to patient.name, patient_path(patient) %></td>
+		        <td><%= patient.dob.to_date.strftime('%B %e, %Y') %></td>
+		        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+		        <td><%= link_to 'Remove', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+<% else %>
+	<h5 class="center">No patients have been added yet.</h5>
+<% end %>
+
+<div class="center">
+	<br><br>
+	<%= link_to 'Add Patient', new_patient_path, class: 'btn blue darken-2' %> 
+</div>
+<br><br>

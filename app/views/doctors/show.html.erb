@@ -1,0 +1,33 @@
+<h1><%= @doctor.name %></h1>
+<h5 class="center">Specialty: <%= @doctor.specialty %></h5>
+<br>
+
+<% if @doctor.appointments.any? %>
+	<h4 class="center">Scheduled Appointments</h4>
+	<div class="container">
+		<div class="row">
+				<% @doctor.appointments.order(:date).each do |a| %>
+					<hr>
+					<div class="col s12">
+						<h5><%= a.patient.name %></h5>
+					</div>
+					<div class="col s12">
+						<i>At</i> <u><%= a.time %></u> <i>on</i> <u><%= a.date.strftime('%B %e, %Y') %></u> 
+					</div>
+					<div class="col s12">
+						<i>Reason for visit:</i><br>
+						<%= a.reason %><br><br>
+					</div>
+				<% end %>
+		</div>
+	</div>
+<% else %>
+	<h4 class="center">No Appointments Scheduled</h4>
+<% end %>
+
+<div class="center">
+	<br><br>
+	<%= link_to 'Add Appointment', new_appointment_path, class: 'btn blue darken-2' %>
+	<br><br>
+	<%= link_to '<< All Doctors', doctors_path, class: 'btn blue darken-2' %> 
+</div>

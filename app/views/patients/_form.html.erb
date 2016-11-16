@@ -1,0 +1,16 @@
+<div class="row">
+	<%= form_for @patient do |f| %>
+		<div class="col s6">
+		<%= f.label :name %>
+		<%= f.text_field :name, required: true %>
+		</div>
+		<div class="col s6">
+		<%= f.label 'Date of Birth' %>
+		<%= f.date_field :dob, required: true %>
+		</div>
+		<div class="col s12 center">
+		<%= f.submit nil, class: 'btn blue darken-2' %>
+		</div>
+	<% end %>
+</div>
+<br><br>

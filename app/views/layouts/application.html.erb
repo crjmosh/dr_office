@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DrOffice</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+  	<header>
+	  	<nav>
+			  <div class="nav-wrapper blue darken-2">
+			    <a href="/" class="brand-logo"><%= image_tag('gap.png') %> Ruby City Hospital</a>
+			    <ul id="nav-mobile" class="right">
+			      <li><%= link_to 'Home', root_path %></li>
+			      <li><%= link_to 'Doctors', doctors_path %></li>
+			      <li><%= link_to 'Patients', patients_path %></li>
+			    </ul>
+			  </div>
+			</nav>
+			<% flash.each do |key, value| %>
+	  		<div class="flash <%= key %>">
+	  			<%= value %>
+				</div>
+	  	<% end %>
+		</header>
+
+		<main>
+			<div class="container">
+	    <%= yield %>
+	    </div>
+    </main>
+    <footer class="page-footer blue darken-2">
+	    <div class="footer-copyright blue darken-3">
+	      <div class="container center">
+	      © 2016 CRJ Designs
+	      </div>
+	    </div>
+	  </footer>
+  </body>
+</html>

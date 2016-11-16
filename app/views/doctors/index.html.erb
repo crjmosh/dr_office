@@ -1,0 +1,36 @@
+<h1>Doctors</h1>
+<hr>
+
+<main>
+<% if @doctors.any? %>
+	<div class="container">
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Specialty</th>
+		      <th colspan="2"></th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @doctors.each do |doctor| %>
+		      <tr>
+		        <td><%= link_to doctor.name, doctor_path(doctor) %></td>
+		        <td><%= doctor.specialty %></td>
+		        <td><%= link_to 'Edit', edit_doctor_path(doctor) %></td>
+		        <td><%= link_to 'Remove', doctor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+<% else %>
+	<h5 class="center">No doctors have been added yet.</h5>
+<% end %>
+
+<div class="center">
+	<br><br>
+	<%= link_to 'Add Doctor', new_doctor_path, class: 'btn blue darken-2' %> 
+</div>
+<br><br>
